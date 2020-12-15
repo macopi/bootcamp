@@ -13,7 +13,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 
 // ROUTES
-const car = require('./routes/cars.routes');
+const car = require('./routes/cars.route');
 app.use('/api/cars', car);
 
 
