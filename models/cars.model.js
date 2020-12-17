@@ -1,34 +1,21 @@
 const mongoose = require('mongoose');
 
+// imports de schema
+// const  = require('../schemas/')
+const { Company } = require('../schemas/cars/company.schema');
+const { Created } = require('../schemas/cars/created.schema');
+const { Price } = require('../schemas/cars/price.schema');
+const { Year } = require('../schemas/cars/year.schema');
+
+
 const carSchema = new mongoose.Schema({
-    company: {
-        type: String,
-        required: true,
-        uppercase: true,
-        trim: true,
-        minlength: 2,
-        maxlength: 99,
-        enum: ['BMW', 'AUDI', 'SEAT'] // solo se van a permitir estas compañias
-    },
+    company: Company,
     model: String,
     sold: Boolean,
-    price: {
-        type: Number,
-        required: function() {
-            return this.sold
-        },
-        minlength: 1000
-    },
-    year: {
-        type: Number,
-        min: 2000,
-        max: 2030
-    },
+    price: Price,
+    year: Year,
     extras: [String],
-    created: {
-        type: Date,
-        default: Date.now()
-    }
+    createdAt: Created
 })
 
 const Car = mongoose.model('car', carSchema);
